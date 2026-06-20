@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    img src="{% static 'notee/images/login.png' %}" alt="login image" class="login-image">
+    <h1>LOGIN PAGE</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">username:</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <label for="password">password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <p>Dont have a account?<a href="/register/">Register</a></p>
+</body>
+
+</html>
