@@ -1,185 +1,220 @@
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+/* ==========================================
+   1. GLOBAL RESETS & VARIABLES
+   ========================================== */
+:root {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --border-color: #e2e8f0;
+    --radius: 8px;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
-body{
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    min-height:100vh;
-    padding:30px;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Headings */
-h1{
-    text-align:center;
-    color:white;
-    margin-bottom:20px;
-    font-size:3rem;
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-h2{
-    color:#333;
-    margin-bottom:10px;
+/* ==========================================
+   2. HEADINGS & TYPOGRAPHY
+   ========================================== */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
 
-/* Forms */
-form{
-    max-width:500px;
-    margin:20px auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
-label{
-    display:block;
-    margin-top:15px;
-    margin-bottom:5px;
-    font-weight:500;
-    color:#444;
+p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* ==========================================
+   3. FORMS & CARDS
+   ========================================== */
+form, body > div.container, .dashboard-container {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--border-color);
+}
+
+/* Adjust dashboard max-width because it has list items */
+body:has(.item-container) {
+    max-width: 600px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 input[type="text"],
 input[type="password"],
-input[type="email"]{
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    outline:none;
-    transition:0.3s;
+input[type="email"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #fff;
 }
 
-input:focus{
-    border-color:#667eea;
-    box-shadow:0 0 8px rgba(102,126,234,0.3);
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
-/* Buttons */
-button,
-input[type="submit"]{
-    width:100%;
-    padding:12px;
-    margin-top:20px;
-    border:none;
-    border-radius:8px;
-    background:#667eea;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
+/* ==========================================
+   4. BUTTONS & LINKS
+   ========================================== */
+/* Generic button reset */
+button, input[type="submit"] {
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    transition: background-color 0.2s ease;
 }
 
-button:hover,
-input[type="submit"]:hover{
-    background:#5a67d8;
-    transform:translateY(-2px);
+/* Primary Form Action Buttons */
+input[type="submit"], 
+form button[type="submit"] {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    margin-top: 0.5rem;
 }
 
-/* Links */
-a{
-    text-decoration:none;
-    color:#667eea;
-    font-weight:500;
+input[type="submit"]:hover, 
+form button[type="submit"]:hover {
+    background-color: var(--primary-hover);
 }
 
-a:hover{
-    color:#764ba2;
+/* Standard Links styling */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-/* Notes Container */
-.notes-container{
-    max-width:1000px;
-    margin:auto;
+a:hover {
+    text-decoration: underline;
 }
 
-/* Create Button */
-.create-btn{
-    display:inline-block;
-    background:#28a745;
-    color:white;
-    padding:10px 20px;
-    border-radius:8px;
-    margin-bottom:20px;
+/* ==========================================
+   5. NOTEPAD DASHBOARD SPECIFIC STYLES
+   ========================================== */
+/* Inline elements wrap fix for lists */
+.item-container {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.create-btn:hover{
-    background:#218838;
-    color:white;
+.item-container p {
+    text-align: left;
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1rem;
 }
 
-/* Note Cards */
-.note-card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.15);
-    transition:0.3s;
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
-.note-card:hover{
-    transform:translateY(-5px);
+/* Control Row Buttons (Update / Delete / Logout) */
+.btn-update, .btn-delete, .btn-logout, .btn-create {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: var(--radius);
+    text-decoration: none !important;
 }
 
-.note-title{
-    font-size:1.3rem;
-    font-weight:600;
-    color:#333;
+.btn-create {
+    background-color: var(--primary);
+    color: white !important;
+    margin-bottom: 1.5rem;
 }
+.btn-create:hover { background-color: var(--primary-hover); }
 
-.note-description{
-    margin-top:10px;
-    color:#666;
+.btn-update {
+    background-color: #f1f5f9;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color);
 }
+.btn-update:hover { background-color: #e2e8f0; }
 
-/* Action Buttons */
-.actions{
-    margin-top:15px;
+.btn-delete {
+    background-color: #fee2e2;
+    color: var(--danger) !important;
 }
+.btn-delete:hover { background-color: #fca5a5; }
 
-.update-btn,
-.delete-btn{
-    display:inline-block;
-    padding:8px 15px;
-    border-radius:6px;
-    color:white;
-    margin-right:10px;
+.btn-logout {
+    background-color: #1e293b;
+    color: white !important;
+    width: 100%;
+    margin-top: 1.5rem;
 }
-
-.update-btn{
-    background:#17a2b8;
-}
-
-.delete-btn{
-    background:#dc3545;
-}
-
-.update-btn:hover{
-    background:#138496;
-    color:white;
-}
-
-.delete-btn:hover{
-    background:#c82333;
-    color:white;
-}
-
-/* Logout */
-.logout-btn{
-    display:inline-block;
-    background:#343a40;
-    color:white;
-    padding:10px 20px;
-    border-radius:8px;
-    margin-top:20px;
-}
-
-.logout-btn:hover{
-    background:#23272b;
-    color:white;
-}
+.btn-logout:hover { background-color: #0f172a; }
