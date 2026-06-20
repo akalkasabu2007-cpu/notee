@@ -1,220 +1,289 @@
-/* ==========================================
-   1. GLOBAL RESETS & VARIABLES
-   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
+
 :root {
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --primary: #4f46e5;
-    --primary-hover: #4338ca;
-    --danger: #ef4444;
-    --danger-hover: #dc2626;
-    --border-color: #e2e8f0;
-    --radius: 8px;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --bg-desktop: #f0f4f8; 
+    --text-dark: #1e293b;
+    --border-thick: 3px solid #1e293b;
+    
+    /* Sticky Note Colors */
+    --note-blue: #dbeafe;
+    --note-green: #d1fae5;
+    --note-yellow: #fef3c7;
+    --note-pink: #fce7f3;
+    
+    --shadow-flat: 5px 5px 0px #1e293b;
+    --shadow-flat-hover: 8px 8px 0px #1e293b;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
-    padding: 2rem 1rem;
+    background-color: var(--bg-desktop);
+    background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    color: var(--text-dark);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    padding: 2rem 1rem;
 }
 
-/* ==========================================
-   2. HEADINGS & TYPOGRAPHY
-   ========================================== */
+form, .form-container {
+    background: #ffffff;
+    border: var(--border-thick);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-flat);
+    width: 100%;
+    max-width: 440px;
+    transition: all 0.2s ease;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 960px;
+    background: transparent;
+}
+
+
 h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: -1px;
+    color: var(--text-dark);
+    text-shadow: 2px 2px 0px #cbd5e1;
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
 h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-}
-
-p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-top: 1rem;
-    text-align: center;
-}
-
-/* ==========================================
-   3. FORMS & CARDS
-   ========================================== */
-form, body > div.container, .dashboard-container {
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    width: 100%;
-    max-width: 450px;
-    border: 1px solid var(--border-color);
-}
-
-/* Adjust dashboard max-width because it has list items */
-body:has(.item-container) {
-    max-width: 600px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin: 2rem 0 1rem 0;
 }
 
 label {
     display: block;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.85rem;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    margin-top: 1rem;
 }
 
 input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+select,
+textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.5rem;
+    border: var(--border-thick);
+    border-radius: 10px;
     font-size: 1rem;
-    transition: all 0.2s ease-in-out;
-    background-color: #fff;
+    font-weight: 600;
+    background: #fff;
+    color: var(--text-dark);
+    transition: transform 0.1s ease;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus {
+input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px 0px #1e293b;
 }
 
-/* ==========================================
-   4. BUTTONS & LINKS
-   ========================================== */
-/* Generic button reset */
-button, input[type="submit"] {
+/* Heavy Tactile Buttons */
+button, input[type="submit"], .btn-create, .btn-logout {
     appearance: none;
-    border: none;
-    background: none;
+    display: inline-block;
+    text-align: center;
+    border: var(--border-thick);
+    background: #f43f5e; 
+    color: #fff !important;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    box-shadow: var(--shadow-flat);
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: var(--radius);
-    transition: background-color 0.2s ease;
-}
-
-/* Primary Form Action Buttons */
-input[type="submit"], 
-form button[type="submit"] {
-    width: 100%;
-    background-color: var(--primary);
-    color: white;
-    padding: 0.75rem 1.25rem;
-    margin-top: 0.5rem;
-}
-
-input[type="submit"]:hover, 
-form button[type="submit"]:hover {
-    background-color: var(--primary-hover);
-}
-
-/* Standard Links styling */
-a {
-    color: var(--primary);
     text-decoration: none;
-    font-weight: 600;
+    width: 100%;
+    margin-top: 1.5rem;
+    transition: all 0.1s ease;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-/* ==========================================
-   5. NOTEPAD DASHBOARD SPECIFIC STYLES
-   ========================================== */
-/* Inline elements wrap fix for lists */
-.item-container {
-    background: #f8fafc;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.item-container p {
-    text-align: left;
-    margin: 0;
-    color: var(--text-main);
-    font-size: 1rem;
-}
-
-.button-group {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-/* Control Row Buttons (Update / Delete / Logout) */
-.btn-update, .btn-delete, .btn-logout, .btn-create {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    border-radius: var(--radius);
-    text-decoration: none !important;
+button:hover, input[type="submit"]:hover, .btn-create:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-flat-hover);
 }
 
 .btn-create {
-    background-color: var(--primary);
-    color: white !important;
-    margin-bottom: 1.5rem;
+    background: #3b82f6;
+    max-width: 220px;
+    margin-top: 0;
 }
-.btn-create:hover { background-color: var(--primary-hover); }
-
-.btn-update {
-    background-color: #f1f5f9;
-    color: var(--text-main) !important;
-    border: 1px solid var(--border-color);
-}
-.btn-update:hover { background-color: #e2e8f0; }
-
-.btn-delete {
-    background-color: #fee2e2;
-    color: var(--danger) !important;
-}
-.btn-delete:hover { background-color: #fca5a5; }
 
 .btn-logout {
-    background-color: #1e293b;
-    color: white !important;
+    background: #64748b;
+    max-width: 200px;
+}
+
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
     width: 100%;
+    border-bottom: 3px solid var(--text-dark);
+    padding-bottom: 1rem;
+}
+
+.dashboard-header h1 { margin-bottom: 0; }
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.note-card {
+    background: var(--note-yellow);
+    border: var(--border-thick);
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-flat);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+/* Random rotations for note variation */
+.note-card:nth-child(4n+1) { transform: rotate(-1.5deg); background: var(--note-yellow); }
+.note-card:nth-child(4n+2) { transform: rotate(1deg); background: var(--note-blue); }
+.note-card:nth-child(4n+3) { transform: rotate(-1deg); background: var(--note-green); }
+.note-card:nth-child(4n+4) { transform: rotate(2deg); background: var(--note-pink); }
+
+.note-card:hover {
+    transform: scale(1.03) rotate(0deg) !important;
+    box-shadow: var(--shadow-flat-hover);
+    z-index: 5;
+}
+
+.note-category {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: #1e293b;
+    color: #ffffff;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    align-self: flex-start;
+}
+
+.note-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.note-desc {
+    font-size: 0.95rem;
+    color: #334155;
+    line-height: 1.4;
+}
+
+/* Points list inside note layout */
+.note-points {
+    list-style: none;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 2px dashed rgba(30, 41, 59, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.note-points li {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.note-points li input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--text-dark);
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+.note-points li input[type="checkbox"]:checked {
+    background: var(--text-dark);
+}
+
+.note-points li input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    top: -3px;
+    left: 2px;
+}
+
+.note-points li:has(input:checked) {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+/* Card Button Footer Row */
+.note-card-actions {
+    display: flex;
+    gap: 0.75rem;
     margin-top: 1.5rem;
 }
-.btn-logout:hover { background-color: #0f172a; }
+
+.btn-update-card, .btn-delete-card {
+    flex: 1;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    border: 2px solid var(--text-dark);
+    border-radius: 6px;
+    text-transform: uppercase;
+    background: #fff;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.btn-update-card:hover { background: var(--text-dark); color: #fff !important; }
+.btn-delete-card:hover { background: #ef4444; color: #fff !important; border-color: #ef4444; }
+
+br { display: none; }

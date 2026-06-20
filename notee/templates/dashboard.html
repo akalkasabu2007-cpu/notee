@@ -1,25 +1,49 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Scrapbook Desk</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-
 <body>
-    <h1>WRITE YOUR THOUGHTS</h1>
-    <h2>Create Notepad</h2>
-    <a href="{% url 'create' %}">create</a>
-    <h2>Update Notepad</h2>
-    {% for i in item %}
-        <p>{{ i.Title }} - {{ i.Description }}</p>
-        <button type="submit"><a href="{% url 'update' i.id %}">update</a></button>
-        <button type="submit"><a href="{% url 'delete' i.id %}">delete</a></button>
-    {% endfor %}
-        <button type="submit"><a href="{% url 'logout' %}">Logout</a></button>
+
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>WRITE YOUR THOUGHTS</h1>
+            <a href="{% url 'create' %}" class="btn-create">Add  Note +</a>
+        </header>
+
+        <div class="notes-grid">
+            {% for i in item %}
+                <div class="note-card">
+                    <div class="note-card-content">
+                        
+                        <span class="note-category">
+                            {% if i.Category %}{{ i.Category }}{% else %}General{% endif %}
+                        </span>
+
+                        <div class="note-title">{{ i.Title }}</div>
+                        
+                        <div class="note-desc-text">{{ i.Description }}</div>
+
+                    </div>
+                    
+                    <div class="note-card-actions">
+                        <a href="{% url 'update' i.id %}" class="btn-update-card">Edit</a>
+                        <a href="{% url 'delete' i.id %}" class="btn-delete-card">Delete</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p style="grid-column: 1/-1; text-align: center; font-weight: 700; opacity: 0.5;">
+                    Your desk is clean! Click above to add a note and start writing your thoughts.
+                </p>
+            {% endfor %}
+        </div>
+
+        <center><a href="{% url 'logout' %}" class="btn-logout">Leave Desk</a></center>
+    </div>
+
 </body>
 </html>
